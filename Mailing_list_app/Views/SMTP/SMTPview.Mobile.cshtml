@@ -1,0 +1,51 @@
+﻿@model Mailing_list_app.Models.SMTP
+
+@{
+    ViewBag.Title = "SMTP view";
+}
+
+<br>
+<p class="lead">SMTP view</p>
+
+@if (User.Identity.IsAuthenticated == true)
+{
+    if (ViewBag.Email == null)
+    {
+        <p class="lead">Please, enter your email adress</p>
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dd>
+                    @Html.ActionLink("Create", "Create")
+                </dd>
+            </dl>
+        </div>
+    }
+    else
+    {
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => Model.Email)
+                </dd>
+                <dd>
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = Model.Id }) 
+                </dd>
+            </dl>
+        </div>
+    }
+}
+else
+{
+    <p class="lead">Please, register or login in system</p>
+}
+
+
+
+

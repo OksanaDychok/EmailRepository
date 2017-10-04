@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Mailing_list_app.Models.SendDBEmail>
+
+@{
+    ViewBag.Title = "ViewSendEnmail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (User.Identity.IsAuthenticated == true)
+{
+    <br>
+    <p class="lead">Email history</p>
+
+    <table class="table table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Subject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Recipients)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Subject)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dateTime)
+                </td>
+                <td>
+                    @foreach (var recip in item.Recipients)
+                    {
+
+                        @Html.DisplayFor(modelItem => recip.Email)
+                        <br>
+                    }
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+else
+{
+    <br>
+    <p class="lead">If you want to see history email, you have authenticate</p>
+}
